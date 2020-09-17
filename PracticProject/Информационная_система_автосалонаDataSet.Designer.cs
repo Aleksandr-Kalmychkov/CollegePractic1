@@ -68,8 +68,6 @@ namespace PracticProject {
         
         private global::System.Data.DataRelation relationFK_Сотрудник_Салон;
         
-        private global::System.Data.DataRelation relationFK_Цвет_Модель;
-        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -448,7 +446,6 @@ namespace PracticProject {
             this.relationFK_Сотрудник_Должность = this.Relations["FK_Сотрудник_Должность"];
             this.relationFK_Сотрудник_Паспорт = this.Relations["FK_Сотрудник_Паспорт"];
             this.relationFK_Сотрудник_Салон = this.Relations["FK_Сотрудник_Салон"];
-            this.relationFK_Цвет_Модель = this.Relations["FK_Цвет_Модель"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -527,10 +524,6 @@ namespace PracticProject {
                         this.tableСалон.SalonIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableСотрудник.SalonIDColumn}, false);
             this.Relations.Add(this.relationFK_Сотрудник_Салон);
-            this.relationFK_Цвет_Модель = new global::System.Data.DataRelation("FK_Цвет_Модель", new global::System.Data.DataColumn[] {
-                        this.tableМодель.ModelNameColumn}, new global::System.Data.DataColumn[] {
-                        this.tableЦвет.ModelNameColumn}, false);
-            this.Relations.Add(this.relationFK_Цвет_Модель);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4140,8 +4133,6 @@ namespace PracticProject {
             
             private global::System.Data.DataColumn columnColorName;
             
-            private global::System.Data.DataColumn columnModelName;
-            
             private global::System.Data.DataColumn columnColorType;
             
             private global::System.Data.DataColumn columnColorCost;
@@ -4192,14 +4183,6 @@ namespace PracticProject {
             public global::System.Data.DataColumn ColorNameColumn {
                 get {
                     return this.columnColorName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ModelNameColumn {
-                get {
-                    return this.columnModelName;
                 }
             }
             
@@ -4256,17 +4239,13 @@ namespace PracticProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ЦветRow AddЦветRow(int ColorID, string ColorName, МодельRow parentМодельRowByFK_Цвет_Модель, string ColorType, int ColorCost) {
+            public ЦветRow AddЦветRow(int ColorID, string ColorName, string ColorType, int ColorCost) {
                 ЦветRow rowЦветRow = ((ЦветRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ColorID,
                         ColorName,
-                        null,
                         ColorType,
                         ColorCost};
-                if ((parentМодельRowByFK_Цвет_Модель != null)) {
-                    columnValuesArray[2] = parentМодельRowByFK_Цвет_Модель[0];
-                }
                 rowЦветRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowЦветRow);
                 return rowЦветRow;
@@ -4298,7 +4277,6 @@ namespace PracticProject {
             internal void InitVars() {
                 this.columnColorID = base.Columns["ColorID"];
                 this.columnColorName = base.Columns["ColorName"];
-                this.columnModelName = base.Columns["ModelName"];
                 this.columnColorType = base.Columns["ColorType"];
                 this.columnColorCost = base.Columns["ColorCost"];
             }
@@ -4310,8 +4288,6 @@ namespace PracticProject {
                 base.Columns.Add(this.columnColorID);
                 this.columnColorName = new global::System.Data.DataColumn("ColorName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnColorName);
-                this.columnModelName = new global::System.Data.DataColumn("ModelName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnModelName);
                 this.columnColorType = new global::System.Data.DataColumn("ColorType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnColorType);
                 this.columnColorCost = new global::System.Data.DataColumn("ColorCost", typeof(int), null, global::System.Data.MappingType.Element);
@@ -4322,8 +4298,6 @@ namespace PracticProject {
                 this.columnColorID.Unique = true;
                 this.columnColorName.AllowDBNull = false;
                 this.columnColorName.MaxLength = 50;
-                this.columnModelName.AllowDBNull = false;
-                this.columnModelName.MaxLength = 50;
                 this.columnColorType.AllowDBNull = false;
                 this.columnColorType.MaxLength = 50;
                 this.columnColorCost.AllowDBNull = false;
@@ -5230,17 +5204,6 @@ namespace PracticProject {
                     return ((КомплектацияRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Комплектация_Модель"])));
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ЦветRow[] GetЦветRows() {
-                if ((this.Table.ChildRelations["FK_Цвет_Модель"] == null)) {
-                    return new ЦветRow[0];
-                }
-                else {
-                    return ((ЦветRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Цвет_Модель"])));
-                }
-            }
         }
         
         /// <summary>
@@ -5771,17 +5734,6 @@ namespace PracticProject {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string ModelName {
-                get {
-                    return ((string)(this[this.tableЦвет.ModelNameColumn]));
-                }
-                set {
-                    this[this.tableЦвет.ModelNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string ColorType {
                 get {
                     return ((string)(this[this.tableЦвет.ColorTypeColumn]));
@@ -5799,17 +5751,6 @@ namespace PracticProject {
                 }
                 set {
                     this[this.tableЦвет.ColorCostColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public МодельRow МодельRow {
-                get {
-                    return ((МодельRow)(this.GetParentRow(this.Table.ParentRelations["FK_Цвет_Модель"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Цвет_Модель"]);
                 }
             }
             
@@ -10386,46 +10327,40 @@ SELECT SotrID, PostID, SalonID, Passport, Stage FROM Сотрудник WHERE (S
             tableMapping.DataSetTable = "Цвет";
             tableMapping.ColumnMappings.Add("ColorID", "ColorID");
             tableMapping.ColumnMappings.Add("ColorName", "ColorName");
-            tableMapping.ColumnMappings.Add("ModelName", "ModelName");
             tableMapping.ColumnMappings.Add("ColorType", "ColorType");
             tableMapping.ColumnMappings.Add("ColorCost", "ColorCost");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Цвет] WHERE (([ColorID] = @Original_ColorID) AND ([ColorName] " +
-                "= @Original_ColorName) AND ([ModelName] = @Original_ModelName) AND ([ColorType] " +
-                "= @Original_ColorType) AND ([ColorCost] = @Original_ColorCost))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Цвет] WHERE (([ColorID] = @Original_ColorID) AND ([ColorName] = @Ori" +
+                "ginal_ColorName) AND ([ColorType] = @Original_ColorType) AND ([ColorCost] = @Ori" +
+                "ginal_ColorCost))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ModelName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModelName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Цвет] ([ColorID], [ColorName], [ModelName], [ColorType], [Colo" +
-                "rCost]) VALUES (@ColorID, @ColorName, @ModelName, @ColorType, @ColorCost);\r\nSELE" +
-                "CT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (ColorID " +
-                "= @ColorID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Цвет] ([ColorID], [ColorName], [ColorType], [ColorCost]) VALUES (@Co" +
+                "lorID, @ColorName, @ColorType, @ColorCost);\r\nSELECT ColorID, ColorName, ColorTyp" +
+                "e, ColorCost FROM Цвет WHERE (ColorID = @ColorID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ModelName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModelName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Цвет] SET [ColorID] = @ColorID, [ColorName] = @ColorName, [ModelName] = @ModelName, [ColorType] = @ColorType, [ColorCost] = @ColorCost WHERE (([ColorID] = @Original_ColorID) AND ([ColorName] = @Original_ColorName) AND ([ModelName] = @Original_ModelName) AND ([ColorType] = @Original_ColorType) AND ([ColorCost] = @Original_ColorCost));
-SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (ColorID = @ColorID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Цвет] SET [ColorID] = @ColorID, [ColorName] = @ColorName, [ColorType] = @ColorType, [ColorCost] = @ColorCost WHERE (([ColorID] = @Original_ColorID) AND ([ColorName] = @Original_ColorName) AND ([ColorType] = @Original_ColorType) AND ([ColorCost] = @Original_ColorCost));
+SELECT ColorID, ColorName, ColorType, ColorCost FROM Цвет WHERE (ColorID = @ColorID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ModelName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModelName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ColorCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ModelName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ModelName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ColorCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ColorCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
@@ -10443,7 +10378,7 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM dbo.Цвет";
+            this._commandCollection[0].CommandText = "SELECT ColorID, ColorName, ColorType, ColorCost FROM Цвет";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -10504,7 +10439,7 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ColorID, string Original_ColorName, string Original_ModelName, string Original_ColorType, int Original_ColorCost) {
+        public virtual int Delete(int Original_ColorID, string Original_ColorName, string Original_ColorType, int Original_ColorCost) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ColorID));
             if ((Original_ColorName == null)) {
                 throw new global::System.ArgumentNullException("Original_ColorName");
@@ -10512,19 +10447,13 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ColorName));
             }
-            if ((Original_ModelName == null)) {
-                throw new global::System.ArgumentNullException("Original_ModelName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_ModelName));
-            }
             if ((Original_ColorType == null)) {
                 throw new global::System.ArgumentNullException("Original_ColorType");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_ColorType));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_ColorType));
             }
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_ColorCost));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_ColorCost));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10545,7 +10474,7 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ColorID, string ColorName, string ModelName, string ColorType, int ColorCost) {
+        public virtual int Insert(int ColorID, string ColorName, string ColorType, int ColorCost) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ColorID));
             if ((ColorName == null)) {
                 throw new global::System.ArgumentNullException("ColorName");
@@ -10553,19 +10482,13 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(ColorName));
             }
-            if ((ModelName == null)) {
-                throw new global::System.ArgumentNullException("ModelName");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ModelName));
-            }
             if ((ColorType == null)) {
                 throw new global::System.ArgumentNullException("ColorType");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(ColorType));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(ColorType));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(ColorCost));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ColorCost));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10586,7 +10509,7 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int ColorID, string ColorName, string ModelName, string ColorType, int ColorCost, int Original_ColorID, string Original_ColorName, string Original_ModelName, string Original_ColorType, int Original_ColorCost) {
+        public virtual int Update(int ColorID, string ColorName, string ColorType, int ColorCost, int Original_ColorID, string Original_ColorName, string Original_ColorType, int Original_ColorCost) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ColorID));
             if ((ColorName == null)) {
                 throw new global::System.ArgumentNullException("ColorName");
@@ -10594,39 +10517,27 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(ColorName));
             }
-            if ((ModelName == null)) {
-                throw new global::System.ArgumentNullException("ModelName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ModelName));
-            }
             if ((ColorType == null)) {
                 throw new global::System.ArgumentNullException("ColorType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(ColorType));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(ColorType));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(ColorCost));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ColorID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ColorCost));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ColorID));
             if ((Original_ColorName == null)) {
                 throw new global::System.ArgumentNullException("Original_ColorName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_ColorName));
-            }
-            if ((Original_ModelName == null)) {
-                throw new global::System.ArgumentNullException("Original_ModelName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_ModelName));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_ColorName));
             }
             if ((Original_ColorType == null)) {
                 throw new global::System.ArgumentNullException("Original_ColorType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_ColorType));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_ColorType));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_ColorCost));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ColorCost));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10647,8 +10558,8 @@ SELECT ColorID, ColorName, ModelName, ColorType, ColorCost FROM Цвет WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ColorName, string ModelName, string ColorType, int ColorCost, int Original_ColorID, string Original_ColorName, string Original_ModelName, string Original_ColorType, int Original_ColorCost) {
-            return this.Update(Original_ColorID, ColorName, ModelName, ColorType, ColorCost, Original_ColorID, Original_ColorName, Original_ModelName, Original_ColorType, Original_ColorCost);
+        public virtual int Update(string ColorName, string ColorType, int ColorCost, int Original_ColorID, string Original_ColorName, string Original_ColorType, int Original_ColorCost) {
+            return this.Update(Original_ColorID, ColorName, ColorType, ColorCost, Original_ColorID, Original_ColorName, Original_ColorType, Original_ColorCost);
         }
     }
     
