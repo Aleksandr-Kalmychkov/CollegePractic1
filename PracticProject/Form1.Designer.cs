@@ -42,9 +42,9 @@
             this.сотрудникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.цветToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMn3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_add = new System.Windows.Forms.Button();
-            this.btn_del = new System.Windows.Forms.Button();
-            this.btn_edit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.информационная_система_автосалонаDataSet = new PracticProject.Информационная_система_автосалонаDataSet();
             this.автомобильBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -107,6 +107,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.информационная_система_автосалонаDataSet)).BeginInit();
@@ -229,45 +230,44 @@
             this.TSMn3.Text = "Информация";
             this.TSMn3.Click += new System.EventHandler(this.TSMn3_Click);
             // 
-            // btn_add
+            // btnAdd
             // 
-            this.btn_add.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_add.Location = new System.Drawing.Point(9, 624);
-            this.btn_add.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(248, 81);
-            this.btn_add.TabIndex = 1;
-            this.btn_add.Text = "Добавить запись";
-            this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAdd.Location = new System.Drawing.Point(9, 624);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(248, 81);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Добавить запись";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAddClick);
             // 
-            // btn_del
+            // btnDel
             // 
-            this.btn_del.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_del.Location = new System.Drawing.Point(261, 624);
-            this.btn_del.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_del.Name = "btn_del";
-            this.btn_del.Size = new System.Drawing.Size(248, 81);
-            this.btn_del.TabIndex = 2;
-            this.btn_del.Text = "Удалить запись";
-            this.btn_del.UseVisualStyleBackColor = true;
-            this.btn_del.Click += new System.EventHandler(this.button2_Click);
+            this.btnDel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnDel.Location = new System.Drawing.Point(261, 624);
+            this.btnDel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(248, 81);
+            this.btnDel.TabIndex = 2;
+            this.btnDel.Text = "Удалить запись";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDelClick);
             // 
-            // btn_edit
+            // btnSave
             // 
-            this.btn_edit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btn_edit.Location = new System.Drawing.Point(513, 624);
-            this.btn_edit.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(248, 81);
-            this.btn_edit.TabIndex = 3;
-            this.btn_edit.Text = "Изменить запись";
-            this.btn_edit.UseVisualStyleBackColor = true;
-            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnSave.Location = new System.Drawing.Point(513, 624);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(248, 40);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Сохранить изменения";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSaveClick);
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -280,6 +280,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(750, 415);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             // 
             // информационная_система_автосалонаDataSet
@@ -380,202 +381,202 @@
             // textBox1
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(9, 482);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(150, 20);
             this.textBox1.TabIndex = 5;
-            this.textBox1.Visible = false;
             // 
             // textBox2
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(159, 482);
             this.textBox2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(150, 20);
             this.textBox2.TabIndex = 6;
-            this.textBox2.Visible = false;
             // 
             // textBox3
             // 
             this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(309, 482);
             this.textBox3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(150, 20);
             this.textBox3.TabIndex = 7;
-            this.textBox3.Visible = false;
             // 
             // textBox4
             // 
             this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox4.Enabled = false;
             this.textBox4.Location = new System.Drawing.Point(459, 482);
             this.textBox4.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(150, 20);
             this.textBox4.TabIndex = 8;
-            this.textBox4.Visible = false;
             // 
             // textBox5
             // 
             this.textBox5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox5.Enabled = false;
             this.textBox5.Location = new System.Drawing.Point(609, 482);
             this.textBox5.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(150, 20);
             this.textBox5.TabIndex = 9;
-            this.textBox5.Visible = false;
             // 
             // textBox6
             // 
             this.textBox6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox6.Enabled = false;
             this.textBox6.Location = new System.Drawing.Point(9, 521);
             this.textBox6.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(150, 20);
             this.textBox6.TabIndex = 10;
-            this.textBox6.Visible = false;
             // 
             // textBox7
             // 
             this.textBox7.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox7.Enabled = false;
             this.textBox7.Location = new System.Drawing.Point(159, 521);
             this.textBox7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(150, 20);
             this.textBox7.TabIndex = 11;
-            this.textBox7.Visible = false;
             // 
             // textBox8
             // 
             this.textBox8.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox8.Enabled = false;
             this.textBox8.Location = new System.Drawing.Point(309, 521);
             this.textBox8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(150, 20);
             this.textBox8.TabIndex = 12;
-            this.textBox8.Visible = false;
             // 
             // textBox9
             // 
             this.textBox9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox9.Enabled = false;
             this.textBox9.Location = new System.Drawing.Point(459, 521);
             this.textBox9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(150, 20);
             this.textBox9.TabIndex = 13;
-            this.textBox9.Visible = false;
             // 
             // textBox10
             // 
             this.textBox10.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox10.Enabled = false;
             this.textBox10.Location = new System.Drawing.Point(609, 521);
             this.textBox10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(150, 20);
             this.textBox10.TabIndex = 14;
-            this.textBox10.Visible = false;
             // 
             // textBox11
             // 
             this.textBox11.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox11.Enabled = false;
             this.textBox11.Location = new System.Drawing.Point(9, 560);
             this.textBox11.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(150, 20);
             this.textBox11.TabIndex = 15;
-            this.textBox11.Visible = false;
             // 
             // textBox12
             // 
             this.textBox12.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox12.Enabled = false;
             this.textBox12.Location = new System.Drawing.Point(159, 560);
             this.textBox12.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(150, 20);
             this.textBox12.TabIndex = 16;
-            this.textBox12.Visible = false;
             // 
             // textBox13
             // 
             this.textBox13.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox13.Enabled = false;
             this.textBox13.Location = new System.Drawing.Point(309, 560);
             this.textBox13.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(150, 20);
             this.textBox13.TabIndex = 17;
-            this.textBox13.Visible = false;
             // 
             // textBox14
             // 
             this.textBox14.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox14.Enabled = false;
             this.textBox14.Location = new System.Drawing.Point(459, 560);
             this.textBox14.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(150, 20);
             this.textBox14.TabIndex = 18;
-            this.textBox14.Visible = false;
             // 
             // textBox15
             // 
             this.textBox15.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox15.Enabled = false;
             this.textBox15.Location = new System.Drawing.Point(609, 560);
             this.textBox15.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(150, 20);
             this.textBox15.TabIndex = 19;
-            this.textBox15.Visible = false;
             // 
             // textBox16
             // 
             this.textBox16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox16.Enabled = false;
             this.textBox16.Location = new System.Drawing.Point(9, 599);
             this.textBox16.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(150, 20);
             this.textBox16.TabIndex = 20;
-            this.textBox16.Visible = false;
             // 
             // textBox17
             // 
             this.textBox17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox17.Enabled = false;
             this.textBox17.Location = new System.Drawing.Point(159, 599);
             this.textBox17.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(150, 20);
             this.textBox17.TabIndex = 21;
-            this.textBox17.Visible = false;
             // 
             // textBox18
             // 
             this.textBox18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox18.Enabled = false;
             this.textBox18.Location = new System.Drawing.Point(309, 599);
             this.textBox18.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(150, 20);
             this.textBox18.TabIndex = 22;
-            this.textBox18.Visible = false;
             // 
             // textBox19
             // 
             this.textBox19.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox19.Enabled = false;
             this.textBox19.Location = new System.Drawing.Point(459, 599);
             this.textBox19.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(150, 20);
             this.textBox19.TabIndex = 23;
-            this.textBox19.Visible = false;
             // 
             // textBox20
             // 
             this.textBox20.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.textBox20.Enabled = false;
             this.textBox20.Location = new System.Drawing.Point(609, 599);
             this.textBox20.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(150, 20);
             this.textBox20.TabIndex = 24;
-            this.textBox20.Visible = false;
             // 
             // label1
             // 
@@ -797,11 +798,24 @@
             this.label20.Text = "label20";
             this.label20.Visible = false;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnCancel.Location = new System.Drawing.Point(513, 665);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(248, 40);
+            this.btnCancel.TabIndex = 46;
+            this.btnCancel.Text = "Удалить изменения";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 713);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
@@ -843,9 +857,9 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btn_edit);
-            this.Controls.Add(this.btn_del);
-            this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnDel);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -878,9 +892,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem TSMn1;
         private System.Windows.Forms.ToolStripMenuItem TSMn3;
-        private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.Button btn_del;
-        private System.Windows.Forms.Button btn_edit;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource автомобильBindingSource;
         private Информационная_система_автосалонаDataSetTableAdapters.АвтомобильTableAdapter автомобильTableAdapter;
@@ -953,6 +967,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
